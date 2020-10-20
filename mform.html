@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>JSON Form</title>
+  <link rel="stylesheet" type="text/css" href="deps/opt/bootstrap.css" />
+</head>
+<body>
+  <h1>Grootan test</h1>
+  <h2>Round 2</h2>
+  <form></form>
+  <div id="res" class="alert"></div>
+  <script type="text/javascript" src="deps/jquery.min.js"></script>
+  <script type="text/javascript" src="deps/underscore.js"></script>
+  <script type="text/javascript" src="deps/opt/jsv.js"></script>
+  <script type="text/javascript" src="lib/jsonform.js"></script>
+  <script type="text/javascript">
+    $('form').jsonForm({
+      schema: {
+        name: {
+          type: 'string',
+          title: 'Name',
+          required: true
+        },
+        age: {
+          type: 'number',
+          title: 'Age',
+          required: true
+        },
+      country:
+       {
+        type:'string',
+        title:'Country',
+        enum:["India","Australia","kenya"],
+        required: true
+       },
+       dob:
+        {
+          type:'string',
+          title:'DOB',
+          default:'dd/mm/yyyy',
+          required: true
+         },
+         gender:
+        {
+          type:'string',
+          title:'Gender',
+          enum:["male","female"],
+          required: true
+        },
+        languages:{
+        type:'string',
+        title:'Languages Known',
+        enum:["Java","Ruby","python"],
+        required: true
+        },
+        maincolor: {
+          type: 'string',
+          title: 'Favourite Color',
+          format: 'color',
+          required: true
+        },
+          imageselector: {
+          title: 'Upload Photograph',
+          type: 'string',
+          required: true
+        },
+          Email:
+            {
+              type:'string',
+              title:'Email',
+              required: true
+        },
+            time:
+             {
+     type:'string',
+     title:'tart Time',
+     default:'--:-- --',
+     required: true
+        
+    },
+    web:
+    {
+      type:'string',
+      title:'Website Address',
+      required: true
+    },
+    CGPA:
+    {
+      type:'range',
+      title:'CGPA',
+      default:0,
+      minimum:0,
+      maximum:10,
+      required: true
+    }
+    },
+      onSubmit: function (errors, values) {
+        if (errors) {
+          $('#res').html('<p>I beg your pardon?</p>');
+        } else {
+          $('#res').html('<p>Hello ' + values.name + '.' +
+            (values.age ? '<br/>You are ' + values.age + '.' : '') +
+            '</p>');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
